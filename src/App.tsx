@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { themeChange } from "theme-change"
 import Button from "./components/Button"
 import ThemeController from "./components/ThemeController"
+import Popover from "./components/Popover";
 
 function App() {
   useEffect(() => {
@@ -39,6 +40,9 @@ function App() {
         <Button variant="warning">warning</Button>
         <Button variant="ghost">ghost</Button>
         <Button variant="error">error</Button>
+      </div>
+      <div className="flex gap-2">
+        <Popover/>
       </div>
     </div>
   )
