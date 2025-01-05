@@ -114,7 +114,7 @@ function App() {
       </div>
       <div className="flex gap-2 pl-20 pt-20">
         <Popover placement="top" overlay={<>321</>}>
-          <Button variant="primary" className="btn-outline">
+          <Button variant="outline">
             hover popover
           </Button>
         </Popover>

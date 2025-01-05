@@ -13,6 +13,7 @@ const buttonVariants = cva("btn", {
     variant: {
       neutral: "btn-neutral",
       primary: "btn-primary",
+      outline: "btn-outline",
       secondary: "btn-secondary",
       accent: "btn-accent",
       ghost: "btn-ghost",
