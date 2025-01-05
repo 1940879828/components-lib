@@ -6,6 +6,7 @@ import DropDown, {
   DropdownContent,
   DropdownTrigger
 } from "./components/Dropdown"
+import Popover from "./components/Popover"
 import ThemeController from "./components/ThemeController"
 
 function App() {
@@ -110,6 +111,13 @@ function App() {
             </li>
           </DropdownContent>
         </DropDown>
+      </div>
+      <div className="flex gap-2 pl-20 pt-20">
+        <Popover placement="top" overlay={<>321</>}>
+          <Button variant="primary" className="btn-outline">
+            hover popover
+          </Button>
+        </Popover>
       </div>
     </div>
   )
