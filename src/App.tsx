@@ -5,7 +5,7 @@ import Button from "./components/Button"
 import DropDown, {
   DropdownContent,
   DropdownTrigger
-} from "./components/Popover"
+} from "./components/Dropdown"
 import ThemeController from "./components/ThemeController"
 
 function App() {

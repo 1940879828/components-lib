@@ -1,126 +1,147 @@
-import { type VariantProps, cva } from "class-variance-authority"
 import type React from "react"
 import {
-  type ReactNode,
-  type RefObject,
-  createContext,
-  useContext,
-  useRef
+  type HTMLAttributes,
+  type PropsWithChildren,
+  useRef,
+  useState
 } from "react"
-import { cn } from "../../lib/utils.ts"
-import ClickAwayListener from "../ClickAwayListener"
+import { createPortal } from "react-dom"
+import { twMerge } from "tailwind-merge"
 
-const DropdownContext = createContext<RefObject<HTMLDetailsElement> | null>(
-  null
-)
+type Placement =
+  | "left"
+  | "right"
+  | "top"
+  | "bottom"
+  | "topLeft"
+  | "topRight"
+  | "bottomLeft"
+  | "bottomRight"
+type Props = {
+  overlay: React.ReactNode
+  placement?: Placement
+} & Pick<HTMLAttributes<Element>, "className" | "style">
 
-interface DropdownTriggerProps {
-  children: ReactNode
-  className?: string
-}
-
-export const DropdownTrigger: React.FC<DropdownTriggerProps> = (props) => {
-  const { children, className } = props
-  const detailsRef = useContext(DropdownContext)
-
-  if (!detailsRef) {
-    throw new Error("DropdownTrigger must be used within a Popover")
-  }
-
-  const onBoxClick = () => {
-    detailsRef.current?.toggleAttribute("open")
-  }
-
-  return (
-    <summary
-      className={cn("appearance-none list-none", className)}
-      onClick={onBoxClick}
-    >
-      {children}
-    </summary>
-  )
-}
-
-export const DropdownContent: React.FC<{
-  children: ReactNode
-  className?: string
-}> = ({ children, className }) => {
-  const detailsRef = useContext(DropdownContext)
-
-  if (!detailsRef) {
-    throw new Error("DropdownContent must be used within a Popover")
-  }
-
-  return (
-    <ul
-      className={cn(
-        "menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow",
-        className
-      )}
-    >
-      {children}
-    </ul>
-  )
-}
-
-interface dropdownProps
-  extends React.ButtonHTMLAttributes<HTMLDetailsElement>,
-    VariantProps<typeof dropdownVariants> {
-  children: React.ReactNode
-  trigger?: "click" | "hover"
-}
-
-const dropdownVariants = cva("dropdown", {
-  variants: {
-    variant: {
-      bottom: "dropdown-bottom",
-      bottomEnd: "dropdown-bottom dropdown-end",
-      top: "dropdown-top",
-      topEnd: "dropdown-top dropdown-end",
-      left: "dropdown-left",
-      leftEnd: "dropdown-left dropdown-end",
-      right: "dropdown-right",
-      rightEnd: "dropdown-right dropdown-end"
+const Popover: React.FC<PropsWithChildren<Props>> = (props) => {
+  const { children, placement = "bottom", overlay, className } = props
+  const [visible, setVisible] = useState(false)
+  const wrapper = useRef<HTMLSpanElement>(null)
+  const [{ left, right, top, bottom, width, height }, setRect] = useState<
+    Partial<DOMRect>
+  >({})
+  const style = {
+    top: {
+      left: `${left}px`,
+      top: `${top}px`,
+      height: "0px",
+      width: `${width}px`,
+      justifyContent: "center",
+      alignItems: "end"
+    },
+    left: {
+      left: `${left}px`,
+      top: `${top}px`,
+      height: `${height}px`,
+      width: "0px",
+      justifyContent: "end",
+      alignItems: "center"
+    },
+    right: {
+      left: `${right}px`,
+      top: `${top}px`,
+      height: `${height}px`,
+      width: "0px",
+      justifyContent: "start",
+      alignItems: "center"
+    },
+    bottom: {
+      left: `${left}px`,
+      top: `${bottom}px`,
+      height: "0px",
+      width: `${width}px`,
+      justifyContent: "center",
+      alignItems: "start"
+    },
+    topLeft: {
+      left: `${left! - width!}px`,
+      top: `${top}px`,
+      height: "0px",
+      width: `${width}px`,
+      justifyContent: "center",
+      alignItems: "end"
+    },
+    topRight: {
+      left: `${left! + width!}px`,
+      top: `${top}px`,
+      height: "0px",
+      width: `${width}px`,
+      justifyContent: "center",
+      alignItems: "end"
+    },
+    bottomLeft: {
+      left: `${left! - width!}px`,
+      top: `${bottom}px`,
+      height: "0px",
+      width: `${width}px`,
+      justifyContent: "center",
+      alignItems: "start"
+    },
+    bottomRight: {
+      left: `${left! + width!}px`,
+      top: `${bottom}px`,
+      height: "0px",
+      width: `${width}px`,
+      justifyContent: "center",
+      alignItems: "start"
     }
-  },
-  defaultVariants: {
-    variant: "bottom"
+  }[placement]
+
+  const show = () => {
+    if (!wrapper.current) return
+    const rect = wrapper.current.getBoundingClientRect()
+    setRect(rect)
+    setVisible(true)
   }
-})
 
-const DropDown = (props: dropdownProps) => {
-  const { children, variant, className, trigger, ...otherProps } = props
-  const detailsRef = useRef<HTMLDetailsElement>(null)
-
-  const onAwayClick = () => {
-    detailsRef?.current?.removeAttribute("open")
+  const hide = () => {
+    setVisible(false)
   }
 
   const onMouseEnter = () => {
-    if (trigger !== "hover") return
-    detailsRef.current?.setAttribute("open", "")
+    show()
   }
 
   const onMouseLeave = () => {
-    if (trigger !== "hover") return
-    detailsRef.current?.removeAttribute("open")
+    hide()
   }
 
   return (
-    <ClickAwayListener onClickAway={onAwayClick}>
-      <details
-        ref={detailsRef}
+    <>
+      <span
+        ref={wrapper}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className={cn(dropdownVariants({ variant, className }))}
-        {...otherProps}
       >
-        <DropdownContext.Provider value={detailsRef}>
-          {children}
-        </DropdownContext.Provider>
-      </details>
-    </ClickAwayListener>
+        {children}
+      </span>
+      {createPortal(
+        <div
+          className={twMerge(
+            "flex fixed z-[100] text-inherit",
+            !visible && "hidden"
+          )}
+          style={{ ...props.style, ...style }}
+          onMouseEnter={onMouseEnter} // 把事件绑定在整个弹出框外层
+          onMouseLeave={onMouseLeave}
+        >
+          <span className={twMerge("min-w-fit min-h-fit", className)}>
+            {overlay}
+          </span>
+        </div>,
+        document.body
+      )}
+    </>
   )
 }
 
-export default DropDown
+export default Popover
