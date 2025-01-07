@@ -21,7 +21,7 @@ function App() {
           variant="neutral"
           shape="square"
           size="lg"
-          className="text-sm text-primary"
+          className="text-sm"
         >
           neutral
         </Button>

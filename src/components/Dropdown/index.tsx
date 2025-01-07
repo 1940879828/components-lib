@@ -52,12 +52,7 @@ export const DropdownContent: React.FC<{
   }
 
   return (
-    <ul
-      className={cn(
-        "menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow",
-        className
-      )}
-    >
+    <ul className={className}>
       {children}
     </ul>
   )
