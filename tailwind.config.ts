@@ -47,6 +47,9 @@ export default {
     extend: {
       colors: {
         custom: "var(--my-color)"
+      },
+      borderRadius: {
+        DEFAULT: "4px"
       }
     }
   },

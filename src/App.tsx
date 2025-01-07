@@ -5,6 +5,7 @@ import DropDown, {
   DropdownContent,
   DropdownTrigger
 } from "./components/Dropdown"
+import Paper from "./components/Paper/Paper.tsx"
 import ThemeController from "./components/ThemeController"
 import { initTheme } from "./lib/theme.ts"
 
@@ -17,7 +18,12 @@ function App() {
     <div className="p-2">
       <div className="flex gap-2">
         <ThemeController className="w-8 h-8" />
-        <Button variant="neutral" shape="square" size="lg" className="text-sm bg-custom">
+        <Button
+          variant="neutral"
+          shape="square"
+          size="lg"
+          className="text-sm bg-custom"
+        >
           neutral
         </Button>
         <Button variant="primary" shape="circle" size="lg" className="text-sm">
@@ -105,6 +111,17 @@ function App() {
             </li>
           </DropdownContent>
         </DropDown>
+      </div>
+      <div className="flex gap-2 pl-2 flex-wrap pt-2">
+        {[...Array(25).keys()].map((_, i) => (
+          <Paper
+            key={i}
+            elevation={i}
+            className="w-24 h-24 flex gap-2 justify-center items-center"
+          >
+            {i}
+          </Paper>
+        ))}
       </div>
     </div>
   )
