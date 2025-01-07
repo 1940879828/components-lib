@@ -44,7 +44,11 @@ export default {
     ]
   },
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        custom: "var(--my-color)"
+      }
+    }
   },
   plugins: [require("daisyui")]
 }

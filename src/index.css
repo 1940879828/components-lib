@@ -7,3 +7,10 @@
     transition: background-color 3s, color 1.5s; /* 设置深色模式切换的过渡效果 */
   }
 }
+
+[data-theme='dark'] {
+  --my-color: #000;
+}
+[data-theme='light'] {
+  --my-color: #ffabc8;
+}

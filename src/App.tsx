@@ -17,7 +17,7 @@ function App() {
     <div className="p-2">
       <div className="flex gap-2">
         <ThemeController className="w-8 h-8" />
-        <Button variant="neutral" shape="square" size="lg" className="text-sm">
+        <Button variant="neutral" shape="square" size="lg" className="text-sm bg-custom">
           neutral
         </Button>
         <Button variant="primary" shape="circle" size="lg" className="text-sm">
