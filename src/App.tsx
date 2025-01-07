@@ -1,28 +1,23 @@
 import "./App.css"
 import { useEffect } from "react"
-import { themeChange } from "theme-change"
 import Button from "./components/Button"
 import DropDown, {
   DropdownContent,
   DropdownTrigger
 } from "./components/Dropdown"
 import ThemeController from "./components/ThemeController"
+import { initTheme } from "./lib/theme.ts"
 
 function App() {
   useEffect(() => {
-    themeChange(false)
+    initTheme()
   }, [])
 
   return (
     <div className="p-2">
       <div className="flex gap-2">
         <ThemeController className="w-8 h-8" />
-        <Button
-          variant="neutral"
-          shape="square"
-          size="lg"
-          className="text-sm"
-        >
+        <Button variant="neutral" shape="square" size="lg" className="text-sm">
           neutral
         </Button>
         <Button variant="primary" shape="circle" size="lg" className="text-sm">
