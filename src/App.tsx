@@ -1,4 +1,5 @@
 import "./App.css"
+import Accordion from "./components/Accordion"
 import InfinitePosts from "@/example/InfinitePosts"
 import PaginatedPosts from "@/example/PaginatedPosts"
 import { getPosts } from "@/service"
@@ -200,6 +201,22 @@ function App() {
           <SwapOn className="text-4xl">🥵</SwapOn>
           <SwapOff className="text-4xl">🥶</SwapOff>
         </RotateSwap>
+        <Accordion
+          data={[
+            {
+              label: "title1",
+              value: "value1"
+            },
+            {
+              label: "title2",
+              value: "value2"
+            },
+            {
+              label: "title3",
+              value: "value3"
+            }
+          ]}
+        />
       </div>
     </div>
   )

@@ -18,7 +18,8 @@ export default {
           "--rounded-box": "8px", // border radius rounded-box 实用类，用于卡片和其他大盒子
           "--rounded-btn": "4px", // border radius rounded-btn 实用类, 用于按钮和类似的元素
           "--rounded-badge": "1.9rem", // border radius rounded-badge 实用类, 用于徽章等
-          "--tab-radius": "4px" // border radius of tabs
+          "--tab-radius": "4px", // border radius of tabs
+          "--btn-color": "#1565c0"
         }
       },
       {
@@ -38,7 +39,8 @@ export default {
           "--rounded-box": "8px", // border radius rounded-box 实用类，用于卡片和其他大盒子
           "--rounded-btn": "4px", // border radius rounded-btn 实用类, 用于按钮和类似的元素
           "--rounded-badge": "1.9rem", // border radius rounded-badge 实用类, 用于徽章等
-          "--tab-radius": "4px" // border radius of tabs
+          "--tab-radius": "4px", // border radius of tabs
+          "--btn-color": "#1565c0"
         }
       }
     ]
