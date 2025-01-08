@@ -11,6 +11,7 @@ import DropDown, {
   DropdownTrigger
 } from "./components/Dropdown"
 import Paper from "./components/Paper/Paper.tsx"
+import { RotateSwap, SwapOff, SwapOn } from "./components/Swap"
 import Popover from "./components/Popover"
 import ThemeController from "./components/ThemeController"
 import { initTheme } from "./lib/theme.ts"
@@ -168,19 +169,38 @@ function App() {
           <Button onClick={sendRequest}>send request</Button>
         </div>
       </div>
-      <Dialog
-        title={<h3 className="font-bold text-lg">Hello!</h3>}
-        content={
-          <p className="py-4">
-            Press ESC key or click the button below to close
-          </p>
-        }
-        actions={
-          <form method="dialog">
-            <Button variant="primary">Close</Button>
-          </form>
-        }
-      />
+      <div className="flex gap-2 pl-2 flex-wrap pt-2">
+        <Dialog
+          title={<h3 className="font-bold text-lg">Hello!</h3>}
+          content={
+            <p className="py-4">
+              Press ESC key or click the button below to close
+            </p>
+          }
+          actions={
+            <form method="dialog">
+              <Button variant="primary">Close</Button>
+            </form>
+          }
+        />
+        <RotateSwap
+          onChange={(v) => {
+            console.log(v)
+          }}
+        >
+          <SwapOn className="text-4xl">😈</SwapOn>
+          <SwapOff className="text-4xl">😇</SwapOff>
+        </RotateSwap>
+        <RotateSwap
+          onChange={(v) => {
+            console.log(v)
+          }}
+          variant="flip"
+        >
+          <SwapOn className="text-4xl">🥵</SwapOn>
+          <SwapOff className="text-4xl">🥶</SwapOff>
+        </RotateSwap>
+      </div>
     </div>
   )
 }

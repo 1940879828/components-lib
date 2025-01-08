@@ -28,13 +28,16 @@ const Dialog = ({ title, content, actions, className }: DialogProps) => {
 
   return (
     <>
-      <button className="btn" onClick={show}>
+      <button type="button" className="btn" onClick={show}>
         open modal
       </button>
       <dialog ref={dialogRef} className="modal" onClick={onMaskClick}>
         <div className={cn("modal-box", className)}>
           <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            <button
+              type="button"
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
               <X size={16} />
             </button>
           </form>
