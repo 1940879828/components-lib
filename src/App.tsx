@@ -5,6 +5,7 @@ import { getPosts } from "@/service"
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
 import Button from "./components/Button"
+import Dialog from "./components/Dialog"
 import DropDown, {
   DropdownContent,
   DropdownTrigger
@@ -167,6 +168,19 @@ function App() {
           <Button onClick={sendRequest}>send request</Button>
         </div>
       </div>
+      <Dialog
+        title={<h3 className="font-bold text-lg">Hello!</h3>}
+        content={
+          <p className="py-4">
+            Press ESC key or click the button below to close
+          </p>
+        }
+        actions={
+          <form method="dialog">
+            <Button variant="primary">Close</Button>
+          </form>
+        }
+      />
     </div>
   )
 }

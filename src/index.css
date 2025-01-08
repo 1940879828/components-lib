@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 87.5%;
+}
+
 @layer utilities {
   .dark {
     transition: background-color 3s, color 1.5s; /* 设置深色模式切换的过渡效果 */

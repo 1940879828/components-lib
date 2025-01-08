@@ -15,7 +15,7 @@ const ThemeController = ({ className }: { className: string }) => {
       <input
         type="checkbox"
         className="theme-controller"
-        value={isLight}
+        value={isLight || ""}
         onChange={onInputChange}
       />
 
