@@ -1,9 +1,23 @@
+import { type ChangeEvent, useState } from "react"
+import { getTheme, setTheme } from "../../lib/theme.ts"
 import { cn } from "../../lib/utils.ts"
 
 const ThemeController = ({ className }: { className: string }) => {
+  const [isLight, setIsLight] = useState<"light" | "dark">(getTheme())
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsLight(e.target.checked ? "light" : "dark")
+    setTheme(e.target.checked ? "light" : "dark")
+  }
+
   return (
     <label className={cn("swap swap-rotate", className)}>
-      <input type="checkbox" className="theme-controller" value="light" />
+      <input
+        type="checkbox"
+        className="theme-controller"
+        value={isLight}
+        onChange={onInputChange}
+      />
 
       <svg
         className="swap-off h-10 w-10 fill-current"

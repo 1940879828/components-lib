@@ -51,16 +51,7 @@ export const DropdownContent: React.FC<{
     throw new Error("DropdownContent must be used within a Popover")
   }
 
-  return (
-    <ul
-      className={cn(
-        "menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow",
-        className
-      )}
-    >
-      {children}
-    </ul>
-  )
+  return <ul className={cn("menu dropdown-content",className)}>{children}</ul>
 }
 
 interface dropdownProps

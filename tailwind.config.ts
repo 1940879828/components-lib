@@ -44,7 +44,14 @@ export default {
     ]
   },
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        custom: "var(--my-color)"
+      },
+      borderRadius: {
+        DEFAULT: "4px"
+      }
+    }
   },
   plugins: [require("daisyui")]
 }

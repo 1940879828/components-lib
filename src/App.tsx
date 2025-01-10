@@ -1,17 +1,18 @@
 import "./App.css"
 import { useEffect } from "react"
-import { themeChange } from "theme-change"
 import Button from "./components/Button"
 import DropDown, {
   DropdownContent,
   DropdownTrigger
 } from "./components/Dropdown"
+import Paper from "./components/Paper/Paper.tsx"
 import Popover from "./components/Popover"
 import ThemeController from "./components/ThemeController"
+import { initTheme } from "./lib/theme.ts"
 
 function App() {
   useEffect(() => {
-    themeChange(false)
+    initTheme()
   }, [])
 
   return (
@@ -22,7 +23,7 @@ function App() {
           variant="neutral"
           shape="square"
           size="lg"
-          className="text-sm text-primary"
+          className="text-sm bg-custom"
         >
           neutral
         </Button>
@@ -111,6 +112,17 @@ function App() {
             </li>
           </DropdownContent>
         </DropDown>
+      </div>
+      <div className="flex gap-2 pl-2 flex-wrap pt-2">
+        {[...Array(25).keys()].map((_, i) => (
+          <Paper
+            key={i}
+            elevation={i}
+            className="w-24 h-24 flex gap-2 justify-center items-center"
+          >
+            {i}
+          </Paper>
+        ))}
       </div>
       <div className="flex gap-2 pl-20 pt-20">
         <Popover placement="top" overlay={<>321</>}>
