@@ -7,7 +7,7 @@ import {
   useContext,
   useRef
 } from "react"
-import { cn } from "../../lib/utils.ts"
+import { cn } from "@/lib/utils.ts"
 import ClickAwayListener from "../ClickAwayListener"
 
 const DropdownContext = createContext<RefObject<HTMLDetailsElement> | null>(
@@ -51,7 +51,7 @@ export const DropdownContent: React.FC<{
     throw new Error("DropdownContent must be used within a Popover")
   }
 
-  return <ul className={cn("menu dropdown-content",className)}>{children}</ul>
+  return <ul className={cn("menu dropdown-content", className)}>{children}</ul>
 }
 
 interface dropdownProps

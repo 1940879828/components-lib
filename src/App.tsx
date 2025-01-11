@@ -1,5 +1,7 @@
 import "./App.css"
-import { useEffect } from "react"
+import { getPosts } from "@/service"
+import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
 import Button from "./components/Button"
 import DropDown, {
   DropdownContent,
@@ -11,6 +13,27 @@ import ThemeController from "./components/ThemeController"
 import { initTheme } from "./lib/theme.ts"
 
 function App() {
+  const [id, setId] = useState(1)
+
+  const { data, isLoading } = useQuery(
+    ["post", id],
+    ({ queryKey }) => {
+      const [, postId] = queryKey // 解构 queryKey 获取 id
+      return getPosts(+postId)
+    },
+    {
+      enabled: !!id // 当 id 存在时才执行查询
+    }
+  )
+
+  const sendRequest = () => {
+    setId((prevId) => prevId + 1)
+  }
+
+  useEffect(() => {
+    console.log({ data })
+  }, [data])
+
   useEffect(() => {
     initTheme()
   }, [])
@@ -126,10 +149,17 @@ function App() {
       </div>
       <div className="flex gap-2 pl-20 pt-20">
         <Popover placement="top" overlay={<>321</>}>
-          <Button variant="outline">
-            hover popover
-          </Button>
+          <Button variant="outline">hover popover</Button>
         </Popover>
+        <div className="flex flex-col gap-2">
+          <h3>user</h3>
+          <p>userId:{data?.id}</p>
+          <p>id:{data?.id}</p>
+          <p>title:{data?.title}</p>
+          <p>body:{data?.body}</p>
+          {isLoading && <p>loading...</p>}
+          <Button onClick={sendRequest}>send request</Button>
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { ReactNode } from "react"
-import { cn } from "../../lib/utils.ts"
+import { cn } from "@/lib/utils.ts"
 
 interface Props extends React.ButtonHTMLAttributes<HTMLDivElement> {
   elevation?: number
