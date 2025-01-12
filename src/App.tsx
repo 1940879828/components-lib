@@ -1,4 +1,6 @@
 import "./App.css"
+import InfinitePosts from "@/example/InfinitePosts"
+import PaginatedPosts from "@/example/PaginatedPosts"
 import { getPosts } from "@/service"
 import { useEffect, useState } from "react"
 import { useQuery } from "react-query"
@@ -40,6 +42,10 @@ function App() {
 
   return (
     <div className="p-2">
+      <div className="flex gap-2">
+        <PaginatedPosts />
+        <InfinitePosts />
+      </div>
       <div className="flex gap-2">
         <ThemeController className="w-8 h-8" />
         <Button

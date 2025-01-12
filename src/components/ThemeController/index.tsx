@@ -1,6 +1,6 @@
-import { type ChangeEvent, useState } from "react"
 import { getTheme, setTheme } from "@/lib/theme.ts"
 import { cn } from "@/lib/utils.ts"
+import { type ChangeEvent, useState } from "react"
 
 const ThemeController = ({ className }: { className: string }) => {
   const [isLight, setIsLight] = useState<"light" | "dark">(getTheme())

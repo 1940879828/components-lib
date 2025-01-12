@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils.ts"
 import { type VariantProps, cva } from "class-variance-authority"
 import type React from "react"
 import {
@@ -7,7 +8,6 @@ import {
   useContext,
   useRef
 } from "react"
-import { cn } from "@/lib/utils.ts"
 import ClickAwayListener from "../ClickAwayListener"
 
 const DropdownContext = createContext<RefObject<HTMLDetailsElement> | null>(
