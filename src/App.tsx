@@ -1,4 +1,5 @@
 import "./App.css"
+import Carousel from "@/components/Carousel"
 import { useEffect } from "react"
 import Accordion from "./components/Accordion"
 import Button from "./components/Button"
@@ -20,6 +21,28 @@ function App() {
 
   return (
     <div className="p-2">
+      <div className="flex gap-2 w-5/12 ml-20">
+        <Carousel
+          list={[
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+              className="w-full"
+            />,
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+              className="w-full"
+            />,
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+              className="w-full"
+            />,
+            <img
+              src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+              className="w-full"
+            />
+          ]}
+        />
+      </div>
       <div className="flex gap-2">
         <ThemeController className="w-8 h-8" />
         <Button

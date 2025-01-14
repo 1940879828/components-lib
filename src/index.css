@@ -14,6 +14,11 @@ html {
   }
 }
 
+.btn:active:focus {
+  animation: none !important;
+  transform: none !important;
+}
+
 [data-theme="dark"] {
   --my-color: #000;
 }
