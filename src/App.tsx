@@ -1,10 +1,6 @@
 import "./App.css"
+import { useEffect } from "react"
 import Accordion from "./components/Accordion"
-import InfinitePosts from "@/example/InfinitePosts"
-import PaginatedPosts from "@/example/PaginatedPosts"
-import { getPosts } from "@/service"
-import { useEffect, useState } from "react"
-import { useQuery } from "react-query"
 import Button from "./components/Button"
 import Dialog from "./components/Dialog"
 import DropDown, {
@@ -12,43 +8,18 @@ import DropDown, {
   DropdownTrigger
 } from "./components/Dropdown"
 import Paper from "./components/Paper/Paper.tsx"
-import { RotateSwap, SwapOff, SwapOn } from "./components/Swap"
 import Popover from "./components/Popover"
+import { RotateSwap, SwapOff, SwapOn } from "./components/Swap"
 import ThemeController from "./components/ThemeController"
 import { initTheme } from "./lib/theme.ts"
 
 function App() {
-  const [id, setId] = useState(1)
-
-  const { data, isLoading } = useQuery(
-    ["post", id],
-    ({ queryKey }) => {
-      const [, postId] = queryKey // 解构 queryKey 获取 id
-      return getPosts(+postId)
-    },
-    {
-      enabled: !!id // 当 id 存在时才执行查询
-    }
-  )
-
-  const sendRequest = () => {
-    setId((prevId) => prevId + 1)
-  }
-
-  useEffect(() => {
-    console.log({ data })
-  }, [data])
-
   useEffect(() => {
     initTheme()
   }, [])
 
   return (
     <div className="p-2">
-      <div className="flex gap-2">
-        <PaginatedPosts />
-        <InfinitePosts />
-      </div>
       <div className="flex gap-2">
         <ThemeController className="w-8 h-8" />
         <Button
@@ -160,15 +131,6 @@ function App() {
         <Popover placement="top" overlay={<>321</>}>
           <Button variant="outline">hover popover</Button>
         </Popover>
-        <div className="flex flex-col gap-2">
-          <h3>user</h3>
-          <p>userId:{data?.id}</p>
-          <p>id:{data?.id}</p>
-          <p>title:{data?.title}</p>
-          <p>body:{data?.body}</p>
-          {isLoading && <p>loading...</p>}
-          <Button onClick={sendRequest}>send request</Button>
-        </div>
       </div>
       <div className="flex gap-2 pl-2 flex-wrap pt-2">
         <Dialog
