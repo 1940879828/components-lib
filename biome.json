@@ -26,7 +26,8 @@
     "rules": {
       "a11y": {
         "useKeyWithClickEvents": "off",
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useAltText": "off"
       },
       "recommended": true,
       "complexity": { "noUselessTypeConstraint": "error" },

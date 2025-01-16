@@ -18,9 +18,9 @@ const buttonVariants = cva("btn", {
       accent: "btn-accent",
       ghost: "btn-ghost",
       info: "btn-info",
-      success: "btn-success",
-      warning: "btn-warning",
-      error: "btn-error"
+      success: "btn-success no-animation",
+      warning: "btn-warning no-animation",
+      error: "btn-error no-animation"
     },
     size: {
       xs: "btn-xs",

@@ -6,10 +6,12 @@ import styles from "./index.module.css"
 
 interface Props {
   list: ReactNode[]
+  leftArrow?: ReactNode
+  rightArrow?: ReactNode
 }
 
 const Carousel = (props: Props) => {
-  const { list } = props
+  const { list, leftArrow, rightArrow } = props
   const data = [...list, list[0]]
   const container = useRef<HTMLDivElement>(null)
   const leftAdaptContainer = useRef<HTMLDivElement>(null)
@@ -84,32 +86,45 @@ const Carousel = (props: Props) => {
           ))}
         </div>
         {/* dot */}
-        <div className="absolute flex gap-2">
+        <div className="absolute bottom-2 left-[50%] translate-x -translate-x-1/2 flex gap-2">
           {list.map((_, index) => (
-            <div key={index} onClick={() => jump(index)}>111{index}</div>
+            <div key={index} onClick={() => jump(index)}>
+              <div
+                className={cn(
+                  "w-3 h-3 bg-secondary cursor-pointer rounded-full",
+                  {
+                    "bg-primary": index === currentIndex
+                  }
+                )}
+              />
+            </div>
           ))}
         </div>
         {/* arrow */}
         <div>
-          <div className="absolute left-0 top-[50%] translate-y -translate-y-1/2">
-            <Button
-              variant="outline"
-              className="border-none"
-              shape="circle"
-              onClick={prev}
-            >
-              <ChevronLeft />
-            </Button>
+          <div
+            onClick={prev}
+            className="absolute left-2 top-[50%] translate-y -translate-y-1/2"
+          >
+            {leftArrow ? (
+              leftArrow
+            ) : (
+              <Button variant="outline" className="border-none" shape="circle">
+                <ChevronLeft />
+              </Button>
+            )}
           </div>
-          <div className="absolute right-0 top-[50%] translate-y -translate-y-1/2">
-            <Button
-              variant="outline"
-              className="border-none"
-              shape="circle"
-              onClick={next}
-            >
-              <ChevronRight />
-            </Button>
+          <div
+            onClick={next}
+            className="absolute right-2 top-[50%] translate-y -translate-y-1/2"
+          >
+            {rightArrow ? (
+              rightArrow
+            ) : (
+              <Button variant="outline" className="border-none" shape="circle">
+                <ChevronRight />
+              </Button>
+            )}
           </div>
         </div>
       </div>
