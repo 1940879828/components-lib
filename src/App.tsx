@@ -1,5 +1,6 @@
 import "./App.css"
 import Carousel from "@/components/Carousel"
+import { TimeDisplay } from "@/components/CountDown"
 import { useEffect } from "react"
 import Accordion from "./components/Accordion"
 import Button from "./components/Button"
@@ -21,6 +22,9 @@ function App() {
 
   return (
     <div className="p-2">
+      <div className="flex gap-2 w-5/12 ml-20">
+        <TimeDisplay />
+      </div>
       <div className="flex gap-2 w-5/12 ml-20">
         <Carousel
           list={[
