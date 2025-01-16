@@ -20,7 +20,6 @@ const Carousel = (props: Props) => {
   const [isTransitioning, setIsTransitioning] = useState(false)
 
   useEffect(() => {
-    console.log(data)
     if (!container.current) return
     setTimeout(() => {
       setContainerWidth(container.current!.clientWidth)
@@ -93,7 +92,9 @@ const Carousel = (props: Props) => {
                 className={cn(
                   "w-3 h-3 bg-secondary cursor-pointer rounded-full",
                   {
-                    "bg-primary": index === currentIndex
+                    "bg-primary":
+                      index === currentIndex ||
+                      (index === 0 && currentIndex === data.length - 1)
                   }
                 )}
               />
