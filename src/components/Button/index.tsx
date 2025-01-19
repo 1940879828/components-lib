@@ -13,14 +13,14 @@ const buttonVariants = cva("btn", {
     variant: {
       neutral: "btn-neutral",
       primary: "btn-primary",
-      outline: "btn-outline",
+      outline: "btn-outline hover:bg-opacity-50",
       secondary: "btn-secondary",
       accent: "btn-accent",
       ghost: "btn-ghost",
       info: "btn-info",
-      success: "btn-success",
-      warning: "btn-warning",
-      error: "btn-error"
+      success: "btn-success no-animation",
+      warning: "btn-warning no-animation",
+      error: "btn-error no-animation"
     },
     size: {
       xs: "btn-xs",
